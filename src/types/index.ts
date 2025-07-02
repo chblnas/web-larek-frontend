@@ -9,9 +9,9 @@ interface IProduct {
 }
 
 /** Товар в корзине */
-// type IBasketItem = Pick<IProduct, 'id' | 'title' | 'price'> & {
-//   index: number;
-// }
+type IBasketItem = Pick<IProduct, 'id' | 'title' | 'price'> & {
+  index: number;
+}
 
 /** Состояние корзины */
 interface IBasketView {
