@@ -15,9 +15,7 @@ export class AppState {
   };
   formErrors: FormErrors = {};
 
-	constructor(protected events: IEvents) {
-    this.loadBasketFromStorage();
-  }
+	constructor(protected events: IEvents) {}
 
 	setCatalog(items: IProduct[]) {
 		this.catalog = items;
@@ -113,14 +111,13 @@ export class AppState {
     localStorage.setItem('basket', JSON.stringify(this.basket));
   }
 
-  private loadBasketFromStorage() {
+  loadBasket() {
     try {
       const basketData = localStorage.getItem('basket');
       if (basketData) {
         const parsed = JSON.parse(basketData);
         if (Array.isArray(parsed)) {
           this.basket = parsed;
-          this.events.emit('basket:changed', this.basket);
         }
       }
     } catch (e) {

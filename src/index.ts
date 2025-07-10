@@ -31,6 +31,9 @@ const basket = new Basket(cloneTemplate(basketTemplate), events);
 const order = new DeliveryForm(cloneTemplate(orderTemplate), events);
 const contacts = new ContactForm(cloneTemplate(contactTemplate), events);
 
+// Загрузка корзины из localStorage
+appState.loadBasket();
+basket.total = appState.getBasketTotal();
 
 // Загружен каталог товаров
 events.on('catalog:add', () => {
