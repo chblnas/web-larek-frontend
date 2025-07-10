@@ -1,5 +1,5 @@
 /** Товар */
-interface IProduct {
+export interface IProduct {
   id: string;
   title: string;
   description: string;
@@ -9,21 +9,19 @@ interface IProduct {
 }
 
 /** Товар в корзине */
-type IBasketItem = Pick<IProduct, 'id' | 'title' | 'price'> & {
-  index: number;
-}
+export type IBasketItem = Pick<IProduct, 'id' | 'title' | 'price'>
 
 /** Состояние корзины */
-interface IBasketView {
+export interface IBasketState {
   items: HTMLElement[];
   total: number;
 }
 
 /** Способ оплаты */
-type PaymentMethod = 'online' | 'cash';
+export type PaymentMethod = 'online' | 'cash';
 
 /** Заказ */
-interface IOrder {
+export interface IOrder {
   payment: PaymentMethod;
   address: string;
   email: string;
@@ -33,40 +31,44 @@ interface IOrder {
 }
 
 /** Контактные данные */
-interface IContactData {
-  email: string;
-  phone: string;
-}
+export type IFormData = IDeliveryData & IContactData;
 
-interface IDeliveryData {
+export interface IDeliveryData {
   payment: PaymentMethod;
   address: string;
 }
 
+export interface IContactData {
+  email: string;
+  phone: string;
+}
+
 /** Результат заказа */
-interface IOrderResult {
+export interface IOrderResult {
   id: string;
   total: number;
 }
 
-interface IPage {
+export interface IPage {
   catalog: HTMLElement[];
   counter: number;
 }
 
-interface ICardActions {
+export interface ICardActions {
     onClick: (event: MouseEvent) => void;
 }
 
-interface IModalData {
+export interface IModalData {
   content: HTMLElement;
 }
 
-interface IFormState {
+export interface IFormState {
   valid: boolean;
   errors: string[];
 }
 
-interface ISuccess {
+export interface ISuccess {
   total: number;
 }
+
+export type FormErrors = Partial<Record<keyof IOrder, string>>;
